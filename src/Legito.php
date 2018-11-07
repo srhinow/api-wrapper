@@ -10,10 +10,11 @@ use Legito\Api\Wrapper\Resource\Department;
 use Legito\Api\Wrapper\Resource\Document;
 use Legito\Api\Wrapper\Resource\Group;
 use Legito\Api\Wrapper\Resource\Law;
+use Legito\Api\Wrapper\Resource\Timezone;
 use Legito\Api\Wrapper\Resource\User;
 
 /**
- * Class ApiResponseException
+ * Class Legito
  * @package Legito\Api\Wrapper
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
@@ -29,10 +30,11 @@ class Legito
         Document::class,
         Group::class,
         Law::class,
+        Timezone::class,
         User::class
     ];
 
-    /** @var array<Agreement|AgreementTemplate|Currency|Department|Document|Group|Law|User> */
+    /** @var array<Agreement|AgreementTemplate|Currency|Department|Document|Group|Law|Timezone|User> */
     protected $resources;
 
     public function __construct(string $apiKey, string $privateKey, ?string $url = NULL)
@@ -208,6 +210,17 @@ class Legito
     public function getLaw(): array
     {
         return $this->resources[Law::class]->getLaw();
+    }
+
+
+    /**
+     * Returns timezone list
+     * @return array
+     * @throws \RestClientException
+     */
+    public function getTimezone(): array
+    {
+        return $this->resources[Timezone::class]->getTimezone();
     }
 
 
