@@ -1,0 +1,25 @@
+{
+	"name": "legito/api-wrapper",
+	"version": "dev-master",
+	"description": "Legito REST API wrapper",
+	"keywords": ["legito"],
+	"type": "project",
+	"license": ["MIT"],
+	"require": {
+		"php": ">= 7.1",
+		"tcdent/php-restclient": "^0.1.7",
+		"ext-curl": "*",
+		"ext-json": "*"
+	},
+	"minimum-stability": "stable",
+	"config": {
+		"platform": {
+			"php": "7.1"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Legito\\Api\\": "src"
+		}
+	}
+}
