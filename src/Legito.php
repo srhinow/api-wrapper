@@ -9,6 +9,7 @@ use Legito\Api\Wrapper\Resource\Currency;
 use Legito\Api\Wrapper\Resource\Department;
 use Legito\Api\Wrapper\Resource\Document;
 use Legito\Api\Wrapper\Resource\Group;
+use Legito\Api\Wrapper\Resource\Info;
 use Legito\Api\Wrapper\Resource\Law;
 use Legito\Api\Wrapper\Resource\Timezone;
 use Legito\Api\Wrapper\Resource\User;
@@ -29,6 +30,7 @@ class Legito
         Department::class,
         Document::class,
         Group::class,
+        Info::class,
         Law::class,
         Timezone::class,
         User::class
@@ -201,6 +203,15 @@ class Legito
         return $this->resources[Group::class]->getGroup();
     }
 
+    /**
+     * Returns info
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function getInfo(): \stdClass
+    {
+        return $this->resources[Info::class]->getInfo();
+    }
 
     /**
      * Returns group list
