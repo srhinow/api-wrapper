@@ -34,7 +34,7 @@ abstract class AbstractResource
         $responseCode = $result->info->http_code;
 
         switch ($responseCode) {
-            case Client::HTTP_SUCCESS:
+            case Client::HTTP_SUCCESS || Client::HTTP_CREATED:
                 return $result->decode_response();
 
                 break;
@@ -48,16 +48,15 @@ abstract class AbstractResource
             default:
                 try {
                     $response = $result->decode_response();
-
-                    if (is_object($response)) {
-                        throw new ApiResponseException($response->message, $response->code);
-                    }
-
-                    throw new ApiResponseException('Legito API responsed with:"' . implode(',', $result->response_status_lines)  . '"');
                 } catch (\RestClientException $e) {
                     throw new ApiResponseException('Legito API responsed with unhandled error');
                 }
 
+                if (is_object($response)) {
+                    throw new ApiResponseException($response->message, $response->code);
+                }
+
+                throw new ApiResponseException('Legito API responsed with:"' . implode(',', $result->response_status_lines)  . '"');
         }
     }
 
