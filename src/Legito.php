@@ -89,6 +89,29 @@ class Legito
     }
 
     /**
+     * Posts department
+     * @param array|NULL $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function postDeparment($data = NULL): \stdClass
+    {
+        return $this->resources[Department::class]->postDeparment($data);
+    }
+
+    /**
+     * Updates department
+     * @param int $departmentId
+     * @param array|NULL $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putDeparment(int $departmentId, $data = NULL): \stdClass
+    {
+        return $this->resources[Department::class]->putDeparment($departmentId, $data);
+    }
+
+    /**
      * Inserts user to department
      * @param int $departmentId
      * @param array|NULL $data

@@ -28,6 +28,43 @@ class Department extends AbstractResource
     }
 
     /**
+     * Posts department
+     * @param array|NULL $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function postDeparment($data = NULL): \stdClass
+    {
+        $result = $this->client->post(
+            self::RESOURCE,
+            [],
+            $data
+        );
+
+        return $this->processResponse($result);
+    }
+
+    /**
+     * Updates department
+     * @param int $departmentId
+     * @param array|NULL $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putDeparment(int $departmentId, $data = NULL): \stdClass
+    {
+        $result = $this->client->put(
+            self::RESOURCE,
+            [
+                'departmentId' => $departmentId
+            ],
+            $data
+        );
+
+        return $this->processResponse($result);
+    }
+
+    /**
      * Inserts user to department
      * @param int $departmentId
      * @param array|NULL $data
