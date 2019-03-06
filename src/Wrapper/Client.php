@@ -52,19 +52,20 @@ class Client
      * Creates GET request
      * @param $url
      * @param array $parameters
+     * @param array $queryParameters
      * @return \RestClient
      */
-    public function get($url, array $parameters = [])
+    public function get($url, array $parameters = [], array $queryParameters = [])
     {
         $this->createTimestamp();
-        $this->createAuthHeader($parameters);
+        $this->createAuthHeader($parameters, $queryParameters);
 
         $parametersUrl = '';
         if (!empty($parameters)) {
             $parametersUrl = implode('/', array_filter($parameters)) . '/';
         }
 
-        return $this->restClient->get($url . $parametersUrl . $this->timestamp . '/');
+        return $this->restClient->get($url . $parametersUrl . $this->timestamp . '/', $queryParameters);
     }
 
     /**
@@ -77,7 +78,7 @@ class Client
     public function post($url, array $parameters = [], $data = NULL)
     {
         $this->createTimestamp();
-        $this->createAuthHeader($parameters, $data);
+        $this->createAuthHeader($parameters, [], $data);
 
         $parametersUrl = '';
         if (!empty($parameters)) {
@@ -97,7 +98,7 @@ class Client
     public function put($url, array $parameters = [], $data = NULL)
     {
         $this->createTimestamp();
-        $this->createAuthHeader($parameters, $data);
+        $this->createAuthHeader($parameters, [], $data);
 
         $parametersUrl = '';
         if (!empty($parameters)) {
@@ -139,14 +140,15 @@ class Client
     /**
      * Creates authentication header
      * @param array $parameters
+     * @param array $queryParameters
      * @param array $requestBody
      * @return void
      */
-    protected function createAuthHeader(array $parameters, array $requestBody = []): void
+    protected function createAuthHeader(array $parameters, array $queryParameters = [], array $requestBody = []): void
     {
         $parameters['timestamp'] = $this->timestamp;
 
-        $requestData = array_merge(array_filter($parameters), $requestBody);
+        $requestData = array_merge(array_filter($parameters), array_filter($queryParameters), $requestBody);
 
         $sign = Authenticator::signRequest($requestData, $this->privateKey);
         $token = Authenticator::createAuthToken($this->apiKey, $sign);

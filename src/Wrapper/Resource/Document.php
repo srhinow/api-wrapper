@@ -26,6 +26,7 @@ class Document extends AbstractResource
     {
         $result = $this->client->get(
             self::RESOURCE,
+            [],
             [
                 'agreementId' => $agreementId
             ]
