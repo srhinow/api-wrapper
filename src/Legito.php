@@ -138,12 +138,13 @@ class Legito
 
     /**
      * Returns document list
+     * @param int|null $agreementId
      * @return array
      * @throws \RestClientException
      */
-    public function getDocument(): array
+    public function getDocument(?int $agreementId = NULL): array
     {
-        return $this->resources[Document::class]->getDocument();
+        return $this->resources[Document::class]->getDocument($agreementId);
     }
 
     /**
@@ -158,14 +159,27 @@ class Legito
     }
 
     /**
-     * Puts docuemnt elements data into document
+     * Creates document instance and post elements data into document
+     * @param int $agreementId
      * @param mixed $data
-     * @return array
+     * @return \stdClass
      * @throws \RestClientException
      */
-    public function putDocumentData($data = NULL): array
+    public function postDocumentData(int $agreementId, $data = NULL): \stdClass
     {
-        return $this->resources[Document::class]->putDocumentData($data);
+        return $this->resources[Document::class]->postDocumentData($agreementId, $data);
+    }
+
+    /**
+     * Puts docuemnt elements data into document
+     * @param string $code
+     * @param mixed $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putDocumentData(string $code, $data = NULL): \stdClass
+    {
+        return $this->resources[Document::class]->putDocumentData($code, $data);
     }
 
     /**
@@ -177,29 +191,6 @@ class Legito
     public function getDocumentDataTree(string $code): array
     {
         return $this->resources[Document::class]->getDocumentDataTree($code);
-    }
-
-    /**
-     * Returns document instance list
-     * @param int $agreementId
-     * @return array
-     * @throws \RestClientException
-     */
-    public function getDocumentInstance(int $agreementId): array
-    {
-        return $this->resources[Document::class]->getDocumentInstance($agreementId);
-    }
-
-    /**
-     * Creates document instance and post elements data into document
-     * @param int $agreementId
-     * @param mixed $data
-     * @return array
-     * @throws \RestClientException
-     */
-    public function postDocumentInstance(int $agreementId, $data = NULL): array
-    {
-        return $this->resources[Document::class]->postDocumentInstance($agreementId, $data);
     }
 
     /**

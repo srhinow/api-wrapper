@@ -14,17 +14,22 @@ class Document extends AbstractResource
     protected const RESOURCE = '/document/';
 
     protected const RELATION_DATA = 'data/';
-    protected const RELATION_INSTANCE = 'instance/';
     protected const RELATION_DOWNLOAD = 'download/';
 
     /**
      * Returns document list
+     * @param int|null $agreementId
      * @return array
      * @throws \RestClientException
      */
-    public function getDocument(): array
+    public function getDocument(?int $agreementId = NULL): array
     {
-        $result = $this->client->get(self::RESOURCE);
+        $result = $this->client->get(
+            self::RESOURCE,
+            [
+                'agreementId' => $agreementId
+            ]
+        );
 
         return $this->processResponse($result);
     }
@@ -48,16 +53,39 @@ class Document extends AbstractResource
     }
 
     /**
-     * Puts document elements data into document
+     * Creates document instance and post elements data into document
+     * @param int $agreementId
      * @param mixed $data
-     * @return array
+     * @return \stdClass
      * @throws \RestClientException
      */
-    public function putDocumentData($data = NULL): array
+    public function postDocumentData(int $agreementId, $data = NULL): \stdClass
+    {
+        $result = $this->client->post(
+            self::RESOURCE . self:: RELATION_DATA,
+            [
+                'agreementId' => $agreementId
+            ],
+            $data
+        );
+
+        return $this->processResponse($result);
+    }
+
+    /**
+     * Puts document elements data into document
+     * @param string $code
+     * @param mixed $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putDocumentData(string $code, $data = NULL): \stdClass
     {
         $result = $this->client->put(
             self::RESOURCE . self:: RELATION_DATA,
-            [],
+            [
+                'code' => $code
+            ],
             $data
         );
 
@@ -78,44 +106,6 @@ class Document extends AbstractResource
                 'code' => $code,
                 'tree' => 'tree'
             ]
-        );
-
-        return $this->processResponse($result);
-    }
-
-    /**
-     * Returns document instance list
-     * @param int $agreementId
-     * @return array
-     * @throws \RestClientException
-     */
-    public function getDocumentInstance(int $agreementId): array
-    {
-        $result = $this->client->get(
-            self::RESOURCE . self::RELATION_INSTANCE,
-            [
-                'agreementId' => $agreementId
-            ]
-        );
-
-        return $this->processResponse($result);
-    }
-
-    /**
-     * Creates document instance and post elements data into document
-     * @param int $agreementId
-     * @param mixed $data
-     * @return array
-     * @throws \RestClientException
-     */
-    public function postDocumentInstance(int $agreementId, $data = NULL): array
-    {
-        $result = $this->client->post(
-            self::RESOURCE . self:: RELATION_INSTANCE,
-            [
-                'agreementId' => $agreementId
-            ],
-            $data
         );
 
         return $this->processResponse($result);
