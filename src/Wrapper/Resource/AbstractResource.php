@@ -34,7 +34,8 @@ abstract class AbstractResource
         $responseCode = $result->info->http_code;
 
         switch ($responseCode) {
-            case Client::HTTP_SUCCESS || Client::HTTP_CREATED:
+            case Client::HTTP_SUCCESS:
+            case Client::HTTP_CREATED:
                 return $result->decode_response();
 
                 break;

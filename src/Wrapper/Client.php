@@ -148,7 +148,7 @@ class Client
     {
         $parameters['timestamp'] = $this->timestamp;
 
-        $requestData = array_merge(array_filter($parameters), array_filter($queryParameters), $requestBody);
+        $requestData = array_merge($this->filterParameters($parameters), $this->filterParameters($queryParameters), $requestBody);
 
         $sign = Authenticator::signRequest($requestData, $this->privateKey);
         $token = Authenticator::createAuthToken($this->apiKey, $sign);
@@ -156,4 +156,15 @@ class Client
         $this->restClient->options['headers'][self::AUTH_HEADER] = $token;
     }
 
+    /**
+     * Filter not NULL paramters
+     * @param array $parameters
+     * @return array
+     */
+    private function filterParameters(array $parameters): array
+    {
+        return array_filter($parameters, function($v){
+            return !is_null($v);
+        });
+    }
 }
