@@ -138,13 +138,16 @@ class Legito
 
     /**
      * Returns document list
+     * @param int|null $limit Min limit is 0; Max limit is 1000
+     * @param int|null $offset
      * @param int|null $agreementId
+     * @param bool|null $deleted
      * @return array
      * @throws \RestClientException
      */
-    public function getDocument(?int $agreementId = NULL): array
+    public function getDocument(?int $limit = NULL, ?int $offset = NULL, ?int $agreementId = NULL, ?bool $deleted = NULL): array
     {
-        return $this->resources[Document::class]->getDocument($agreementId);
+        return $this->resources[Document::class]->getDocument($limit, $offset, $agreementId, $deleted);
     }
 
     /**
