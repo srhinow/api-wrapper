@@ -274,6 +274,18 @@ class Legito
     }
 
     /**
+     * Puts user
+     * @param string $idEmail
+     * @param array|NULL $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putUser(string $idEmail, $data = NULL): \stdClass
+    {
+        return $this->resources[User::class]->putUser($idEmail, $data);
+    }
+
+    /**
      * Deletes user
      * @param string $idEmail
      * @return \stdClass

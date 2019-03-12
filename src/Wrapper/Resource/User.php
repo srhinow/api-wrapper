@@ -45,6 +45,26 @@ class User extends AbstractResource
     }
 
     /**
+     * Puts user
+     * @param string $idEmail
+     * @param array|NULL $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putUser(string $idEmail, $data = NULL): \stdClass
+    {
+        $result = $this->client->put(
+            self::RESOURCE,
+            [
+                'id' => $idEmail
+            ],
+            $data
+        );
+
+        return $this->processResponse($result);
+    }
+
+    /**
      * Deletes user
      * @param string $idEmail
      * @return \stdClass
