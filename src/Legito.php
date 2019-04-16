@@ -11,6 +11,7 @@ use Legito\Api\Wrapper\Resource\Document;
 use Legito\Api\Wrapper\Resource\Group;
 use Legito\Api\Wrapper\Resource\Info;
 use Legito\Api\Wrapper\Resource\Law;
+use Legito\Api\Wrapper\Resource\Share;
 use Legito\Api\Wrapper\Resource\Timezone;
 use Legito\Api\Wrapper\Resource\User;
 
@@ -32,6 +33,7 @@ class Legito
         Group::class,
         Info::class,
         Law::class,
+        Share::class,
         Timezone::class,
         User::class
     ];
@@ -238,6 +240,66 @@ class Legito
     public function getLaw(): array
     {
         return $this->resources[Law::class]->getLaw();
+    }
+
+
+    /**
+     * Returns share list for document
+     * @param string $code
+     * @return array
+     * @throws \RestClientException
+     */
+    public function getShare(string $code): array
+    {
+        return $this->resources[Share::class]->getShare($code);
+    }
+
+    /**
+     * Posts user share
+     * @param string $code
+     * @param array|NULL $data
+     * @return array
+     * @throws \RestClientException
+     */
+    public function postShareUser(string $code, $data = NULL): array
+    {
+        return $this->resources[Share::class]->postShareUser($code, $data);
+    }
+
+    /**
+     * Deletes user share
+     * @param string $code
+     * @param string $idEmail
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function deleteShareUser(string $code, string $idEmail): \stdClass
+    {
+        return $this->resources[Share::class]->deleteShareUser($code, $idEmail);
+    }
+    
+    /**
+     * Posts department share
+     * @param string $code
+     * @param array|NULL $data
+     * @return array
+     * @throws \RestClientException
+     */
+    public function postShareDepartment(string $code, $data = NULL): array
+    {
+        return $this->resources[Share::class]->postShareDepartment($code, $data);
+    }
+
+    /**
+     * Deletes department share
+     * @param string $code
+     * @param string $idEmail
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function deleteShareDepartment(string $code, string $idEmail): \stdClass
+    {
+        return $this->resources[Share::class]->deleteShareDepartment($code, $idEmail);
     }
 
 
