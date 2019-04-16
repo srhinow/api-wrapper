@@ -153,6 +153,29 @@ class Legito
     }
 
     /**
+     * Puts document metadata
+     * @param string $code
+     * @param mixed $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putDocument(string $code, $data = NULL): \stdClass
+    {
+        return $this->resources[Document::class]->putDocument($code, $data);
+    }
+
+    /**
+     * Deletes document
+     * @param string $code
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function deleteDocument(string $code): \stdClass
+    {
+        return $this->resources[Document::class]->deleteDocument($code);
+    }
+
+    /**
      * Returns document elements data
      * @param string $code
      * @return array

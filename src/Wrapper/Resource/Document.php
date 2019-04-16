@@ -42,6 +42,44 @@ class Document extends AbstractResource
     }
 
     /**
+     * Puts document metadata
+     * @param string $code
+     * @param mixed $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putDocument(string $code, $data = NULL): \stdClass
+    {
+        $result = $this->client->put(
+            self::RESOURCE,
+            [
+                'code' => $code
+            ],
+            $data
+        );
+
+        return $this->processResponse($result);
+    }
+
+    /**
+     * Deletes document
+     * @param string $code
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function deleteDocument(string $code): \stdClass
+    {
+        $result = $this->client->delete(
+            self::RESOURCE,
+            [
+                'code' => $code,
+            ]
+        );
+
+        return $this->processResponse($result);
+    }
+
+    /**
      * Returns document elements data
      * @param string $code
      * @return array
