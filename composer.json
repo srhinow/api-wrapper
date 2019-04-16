@@ -1,6 +1,6 @@
 {
 	"name": "legito/api-wrapper",
-	"version": "dev-master",
+	"version": "1.0.0",
 	"description": "Legito REST API wrapper",
 	"keywords": ["legito"],
 	"type": "project",
