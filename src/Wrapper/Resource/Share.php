@@ -37,10 +37,10 @@ class Share extends AbstractResource
      * Posts user share
      * @param string $code
      * @param array|NULL $data
-     * @return array
+     * @return \stdClass
      * @throws \RestClientException
      */
-    public function postShareUser(string $code, $data = NULL): array
+    public function postShareUser(string $code, $data = NULL): \stdClass
     {
         $result = $this->client->post(
             self::RESOURCE . self::RELATION_USER,
