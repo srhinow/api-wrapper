@@ -27,10 +27,32 @@ $privateKey = '37c2f78b02';
 $legitoApi = new Legito($apiKey, $privateKey, $url);
 
 // Call some API methods
+// ------------------------------------------------------------------------
 
+// Creates document record from template ID 2255. Insets some data to input 
+// element 'first_party_name1' and downloads it.
+$documentRecord = $this->legitoApi->postDocumentData(
+    2255,
+    [
+         [
+              'name' => 'first_party_name1',
+              'value' => 'John Doe'
+         ]
+    ]
+);
+$documentsData = $this->legitoApi->getDocumentData($documentRecord->code);
+foreach($documentsData as $documentData) {
+    file_put_contents(
+        $documentData->filename,
+        base64_decode($documentData->data)
+    );
+}
+
+// Prints all users form your workspace.
 $users = $legitoApi->getUser();
 print_r($users);
 
+// Creates two users in your workspace.
 $legitoApi->postUser(
     [
          [       
@@ -45,5 +67,6 @@ $legitoApi->postUser(
     ]
 );
 
+// Deletes user form your workspace.
 $legitoApi->deleteUser('johndoe@legito.com');
 ```
