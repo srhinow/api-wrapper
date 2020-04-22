@@ -1,17 +1,17 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
  * Class Currency
- * @package Legito\Api\Wrapper\Resource
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
 class Currency extends AbstractResource
 {
-    protected const RESOURCE = '/currency/';
+    protected const RESOURCE = '/currency';
 
     /**
      * Returns currency list

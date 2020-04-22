@@ -1,19 +1,19 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
  * Class User
- * @package Legito\Api\Wrapper\Resource
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
 class User extends AbstractResource
 {
-    protected const RESOURCE = '/user/';
+    protected const RESOURCE = '/user';
 
-    protected const RELATION_PERMISSION = 'permission/';
+    protected const RELATION_PERMISSION = '/permission';
 
     /**
      * Returns user list

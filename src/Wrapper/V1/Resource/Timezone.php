@@ -1,24 +1,24 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
- * Class Group
- * @package Legito\Api\Wrapper\Resource
+ * Class Timezone
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
-class Group extends AbstractResource
+class Timezone extends AbstractResource
 {
-    protected const RESOURCE = '/group/';
+    protected const RESOURCE = '/timezone';
 
     /**
-     * Returns group list
+     * Returns timezone list
      * @return array
      * @throws \RestClientException
      */
-    public function getGroup(): array
+    public function getTimezone(): array
     {
         $result = $this->client->get(self::RESOURCE);
 

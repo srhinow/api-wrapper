@@ -1,17 +1,17 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
  * Class Info
- * @package Legito\Api\Wrapper\Resource
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
 class Info extends AbstractResource
 {
-    protected const RESOURCE = '/info/';
+    protected const RESOURCE = '/info';
 
     /**
      * Returns version

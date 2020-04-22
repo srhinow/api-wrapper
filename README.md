@@ -1,7 +1,9 @@
 # legito/api-wrapper
 PHP wrapper for Legito REST API requests.
 
-English documentation for API [https://app.swaggerhub.com/apis-docs/Legito/legito-api/1.0](https://app.swaggerhub.com/apis-docs/Legito/legito-api/1.0)
+Wrapper currently support Legito API v1. Legacy API is not suppoted anymore.
+
+English documentation for API [https://app.swaggerhub.com/apis-docs/Legito/legito-api/1](https://app.swaggerhub.com/apis-docs/Legito/legito-api/1)
 
 
 ## Install
@@ -24,14 +26,14 @@ $privateKey = '37c2f78b02';
 //$url = 'https://example.legito.com/api/v1.0'; // use only if you run Legito on custom server
 
 // Create instance
-$legitoApi = new Legito($apiKey, $privateKey, $url);
+$legitoApi = new Legito($apiKey, $privateKey, $url)->getWrapper();
 
 // Call some API methods
 // ------------------------------------------------------------------------
 
-// Creates document record from template ID 2255. Insets some data to input 
+// Creates smart document from template suite ID 2255. Insets some data to input 
 // element 'first_party_name1' and downloads it.
-$documentRecord = $this->legitoApi->postDocumentData(
+$smartDocument = $this->legitoApi->postSmartDocumentData(
     2255,
     [
          [
@@ -40,7 +42,7 @@ $documentRecord = $this->legitoApi->postDocumentData(
          ]
     ]
 );
-$documentsData = $this->legitoApi->getDocumentData($documentRecord->code);
+$documentsData = $this->legitoApi->getSmartDocumentDownload($smartDocument->code, 'pdf');
 foreach($documentsData as $documentData) {
     file_put_contents(
         $documentData->filename,

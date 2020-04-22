@@ -1,10 +1,10 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
-use Legito\Api\Wrapper\Client;
 use Legito\Api\Wrapper\Exception\ApiResponseException;
 use Legito\Api\Wrapper\Exception\NotFoundException;
+use Legito\Api\Wrapper\V1\Client;
 
 /**
  * Class AbstractResource
@@ -18,6 +18,10 @@ abstract class AbstractResource
     /** @var Client */
     protected $client;
 
+    /**
+     * AbstractResource constructor.
+     * @param Client $client
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;

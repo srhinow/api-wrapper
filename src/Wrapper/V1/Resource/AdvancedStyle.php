@@ -1,24 +1,24 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
  * Class AgreementTemplate
- * @package Legito\Api\Wrapper\Resource
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
-class AgreementTemplate extends AbstractResource
+class AdvancedStyle extends AbstractResource
 {
-    protected const RESOURCE = '/agreement-template/';
+    protected const RESOURCE = '/advanced-style';
 
     /**
-     * Returns agreement list
+     * Returns advanced style list
      * @return array
      * @throws \RestClientException
      */
-    public function getAgreementTemplate(): array
+    public function getAdvancedStyle(): array
     {
         $result = $this->client->get(self::RESOURCE);
 

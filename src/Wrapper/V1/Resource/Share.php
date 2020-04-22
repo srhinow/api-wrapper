@@ -1,23 +1,23 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
  * Class Share
- * @package Legito\Api\Wrapper\Resource
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
 class Share extends AbstractResource
 {
-    protected const RESOURCE = '/share/';
+    protected const RESOURCE = '/share';
 
-    protected const RELATION_USER = 'user/';
-    protected const RELATION_DEPARTMENT = 'department/';
+    protected const RELATION_USER = '/user';
+    protected const RELATION_USER_GROUP = '/user-group';
     
     /**
-     * Returns share list for document
+     * Returns share list for document record
      * @return array
      * @throws \RestClientException
      */
@@ -74,16 +74,16 @@ class Share extends AbstractResource
     }
 
     /**
-     * Posts department share
+     * Posts user group share
      * @param string $code
      * @param array|NULL $data
      * @return array
      * @throws \RestClientException
      */
-    public function postShareDepartment(string $code, $data = NULL): array
+    public function postShareUserGroup(string $code, $data = NULL): array
     {
         $result = $this->client->post(
-            self::RESOURCE . self::RELATION_DEPARTMENT,
+            self::RESOURCE . self::RELATION_USER_GROUP,
             [
                 'code' => $code
             ],
@@ -94,16 +94,16 @@ class Share extends AbstractResource
     }
 
     /**
-     * Deletes department share
+     * Deletes user group share
      * @param string $code
      * @param string $idEmail
      * @return \stdClass
      * @throws \RestClientException
      */
-    public function deleteShareDepartment(string $code, string $idEmail): \stdClass
+    public function deleteShareUserGroup(string $code, string $idEmail): \stdClass
     {
         $result = $this->client->delete(
-            self::RESOURCE . self::RELATION_DEPARTMENT,
+            self::RESOURCE . self::RELATION_USER_GROUP,
             [
                 'code' => $code,
                 'id' => $idEmail

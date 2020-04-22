@@ -1,26 +1,26 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
- * Class Department
- * @package Legito\Api\Wrapper\Resource
+ * Class UserGroup
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
-class Department extends AbstractResource
+class UserGroup extends AbstractResource
 {
-    protected const RESOURCE = '/department/';
+    protected const RESOURCE = '/user-group';
 
-    protected const RELATION_USER = 'user/';
+    protected const RELATION_USER = '/user';
 
     /**
-     * Returns department list
+     * Returns user group list
      * @return array
      * @throws \RestClientException
      */
-    public function getDepartment(): array
+    public function getUserGroup(): array
     {
         $result = $this->client->get(self::RESOURCE);
 
@@ -28,12 +28,12 @@ class Department extends AbstractResource
     }
 
     /**
-     * Posts department
+     * Posts user group
      * @param array|NULL $data
      * @return \stdClass
      * @throws \RestClientException
      */
-    public function postDeparment($data = NULL): \stdClass
+    public function postUserGroup($data = NULL): \stdClass
     {
         $result = $this->client->post(
             self::RESOURCE,
@@ -45,18 +45,18 @@ class Department extends AbstractResource
     }
 
     /**
-     * Updates department
-     * @param int $departmentId
+     * Updates user group
+     * @param int $userGroupId
      * @param array|NULL $data
      * @return \stdClass
      * @throws \RestClientException
      */
-    public function putDeparment(int $departmentId, $data = NULL): \stdClass
+    public function putUserGroup(int $userGroupId, $data = NULL): \stdClass
     {
         $result = $this->client->put(
             self::RESOURCE,
             [
-                'departmentId' => $departmentId
+                'userGroupId' => $userGroupId
             ],
             $data
         );
@@ -66,17 +66,17 @@ class Department extends AbstractResource
 
 
     /**
-     * Deletes department
-     * @param int $departmentId
+     * Deletes user group
+     * @param int $userGroupId
      * @return \stdClass
      * @throws \RestClientException
      */
-    public function deleteDeparment(int $departmentId): \stdClass
+    public function deleteUserGroup(int $userGroupId): \stdClass
     {
         $result = $this->client->delete(
             self::RESOURCE,
             [
-                'departmentId' => $departmentId
+                'userGroupId' => $userGroupId
             ]
         );
 
@@ -85,18 +85,18 @@ class Department extends AbstractResource
     
     
     /**
-     * Inserts user to department
-     * @param int $departmentId
+     * Inserts user to user group
+     * @param int $userGroupId
      * @param array|NULL $data
      * @return mixed
      * @throws \RestClientException
      */
-    public function postDepartmentUser(string $departmentId, $data = NULL)
+    public function postUserGroupUser(string $userGroupId, $data = NULL)
     {
         $result = $this->client->post(
             self::RESOURCE . self::RELATION_USER,
             [
-                'departmentId' => $departmentId
+                'userGroupId' => $userGroupId
             ],
             $data
         );
@@ -105,18 +105,18 @@ class Department extends AbstractResource
     }
 
     /**
-     * Inserts user to department
-     * @param int $departmentId
+     * Inserts user to user group
+     * @param int $userGroupId
      * @param string $idEmail
      * @return mixed
      * @throws \RestClientException
      */
-    public function deleteDepartmentUser(string $departmentId, string $idEmail)
+    public function deleteUserGroupUser(string $userGroupId, string $idEmail)
     {
         $result = $this->client->delete(
             self::RESOURCE . self::RELATION_USER,
             [
-                'departmentId' => $departmentId,
+                'userGroupId' => $userGroupId,
                 'userId' => $idEmail
             ]
         );

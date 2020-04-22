@@ -1,24 +1,24 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource;
+namespace Legito\Api\Wrapper\Resource\V1;
 
 
 /**
- * Class Agreement
- * @package Legito\Api\Wrapper\Resource
+ * Class Law
+ * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
-class Agreement extends AbstractResource
+class Country extends AbstractResource
 {
-    protected const RESOURCE = '/agreement/';
+    protected const RESOURCE = '/country';
 
     /**
-     * Returns agreement list
+     * Returns country list
      * @return array
      * @throws \RestClientException
      */
-    public function getAgreement(): array
+    public function getCountry(): array
     {
         $result = $this->client->get(self::RESOURCE);
 
