@@ -19,15 +19,19 @@ class SmartDocument extends AbstractResource
     /**
      * Returns smart document elements data
      * @param string $code
+     * @param string|null $listType
      * @return array
      * @throws \RestClientException
      */
-    public function getSmartDocumentData(string $code): array
+    public function getSmartDocumentData(string $code, ?string $listType): array
     {
         $result = $this->client->get(
             self::RESOURCE . self:: RELATION_DATA,
             [
                 'code' => $code
+            ],
+            [
+                'listType' => $listType
             ]
         );
 
