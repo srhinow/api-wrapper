@@ -105,7 +105,7 @@ class Client
             $parametersUrl = implode('/', array_filter($parameters)) . '/';
         }
 
-        return $this->restClient->put($url . $parametersUrl . $this->timestamp . '/', json_encode($data, JSON_PRETTY_PRINT));
+        return $this->restClient->put($url . $parametersUrl . $this->timestamp . '/', json_encode($data, JSON_PRETTY_PRINT | JSON_PRESERVE_ZERO_FRACTION));
     }
 
     /**

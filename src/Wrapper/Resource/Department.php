@@ -64,6 +64,26 @@ class Department extends AbstractResource
         return $this->processResponse($result);
     }
 
+
+    /**
+     * Deletes department
+     * @param int $departmentId
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function deleteDeparment(int $departmentId): \stdClass
+    {
+        $result = $this->client->delete(
+            self::RESOURCE,
+            [
+                'departmentId' => $departmentId
+            ]
+        );
+
+        return $this->processResponse($result);
+    }
+    
+    
     /**
      * Inserts user to department
      * @param int $departmentId

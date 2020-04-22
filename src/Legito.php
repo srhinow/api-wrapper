@@ -114,6 +114,17 @@ class Legito
     }
 
     /**
+     * Deletes department
+     * @param int $departmentId
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function deleteDeparment(int $departmentId): \stdClass
+    {
+        return $this->resources[Department::class]->deleteDeparment($departmentId);
+    }    
+    
+    /**
      * Inserts user to department
      * @param int $departmentId
      * @param array|NULL $data
