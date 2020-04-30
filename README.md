@@ -1,7 +1,7 @@
 # legito/api-wrapper
 PHP wrapper for Legito REST API requests.
 
-Wrapper currently support Legito API v1. Legacy API is not suppoted anymore.
+Wrapper currently support Legito API v1. Legacy API is not supported anymore.
 
 English documentation for API [https://app.swaggerhub.com/apis-docs/Legito/legito-api/1](https://app.swaggerhub.com/apis-docs/Legito/legito-api/1)
 
