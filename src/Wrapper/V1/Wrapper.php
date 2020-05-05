@@ -6,10 +6,10 @@ use Legito\Api\Wrapper\Resource\V1\AdvancedStyle;
 use Legito\Api\Wrapper\Resource\V1\Country;
 use Legito\Api\Wrapper\Resource\V1\Currency;
 use Legito\Api\Wrapper\Resource\V1\DocumentRecord;
-use Legito\Api\Wrapper\Resource\V1\DocumentRecordGroup;
+use Legito\Api\Wrapper\Resource\V1\Category;
 use Legito\Api\Wrapper\Resource\V1\Info;
 use Legito\Api\Wrapper\Resource\V1\Share;
-use Legito\Api\Wrapper\Resource\V1\SmartDocument;
+use Legito\Api\Wrapper\Resource\V1\DocumentVersion;
 use Legito\Api\Wrapper\Resource\V1\TemplateSuite;
 use Legito\Api\Wrapper\Resource\V1\Timezone;
 use Legito\Api\Wrapper\Resource\V1\User;
@@ -37,7 +37,7 @@ class Wrapper
     protected $documentRecordResource;
 
     /** @var DocumentRecord */
-    protected $documentRecordGroupResource;
+    protected $categoryResource;
 
     /** @var Info */
     protected $infoResource;
@@ -46,7 +46,7 @@ class Wrapper
     protected $shareResource;
 
     /** @var TemplateSuite */
-    protected $smartDocumentResource;
+    protected $documentVersionResource;
 
     /** @var TemplateSuite */
     protected $templateSuiteResource;
@@ -65,12 +65,12 @@ class Wrapper
         $client = new Client($apiKey, $privateKey, $url);
 
         $this->advancesStyleResource = new AdvancedStyle($client);
+        $this->categoryResource = new Category($client);
         $this->countryResource = new Country($client);
         $this->currencyResource = new Currency($client);
         $this->documentRecordResource = new DocumentRecord($client);
-        $this->documentRecordGroupResource = new DocumentRecordGroup($client);
+        $this->documentVersionResource = new DocumentVersion($client);
         $this->shareResource = new Share($client);
-        $this->smartDocumentResource = new SmartDocument($client);
         $this->timezoneResource = new Timezone($client);
         $this->templateSuiteResource = new TemplateSuite($client);
         $this->userResource = new User($client);
@@ -85,6 +85,16 @@ class Wrapper
     public function getAdvancedStyle(): array
     {
         return $this->advancesStyleResource->getAdvancedStyle();
+    }
+
+    /**
+     * Returns category list
+     * @return array
+     * @throws \RestClientException
+     */
+    public function getCategory(): array
+    {
+        return $this->categoryResource->getCategory();
     }
 
     /**
@@ -145,13 +155,53 @@ class Wrapper
     }
 
     /**
-     * Returns group list
+     * Returns document version elements data
+     * @param string $code
+     * @param string|null $listType
      * @return array
      * @throws \RestClientException
      */
-    public function getDocumentRecordGroup(): array
+    public function getDocumentVersionData(string $code, ?string $listType): array
     {
-        return $this->documentRecordGroupResource->getDocumentRecordGroup();
+        return $this->documentVersionResource->getDocumentVersionData($code, $listType);
+    }
+
+    /**
+     * Inserts elements data into template and creates new document version
+     * @param int $agreementId
+     * @param mixed $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function postDocumentVersionData(int $templateSuiteId, $data = NULL): \stdClass
+    {
+        return $this->documentVersionResource->postDocumentVersionData($templateSuiteId, $data);
+    }
+
+    /**
+     * Puts elements data into template and creates new document version
+     * @param string $code
+     * @param mixed $data
+     * @return \stdClass
+     * @throws \RestClientException
+     */
+    public function putDocumentVersionData(string $code, $data = NULL): \stdClass
+    {
+        return $this->documentVersionResource->putDocumentVersionData($code, $data);
+    }
+
+    /**
+     * Downloads document version in base64 encoded file
+     * @param string $code
+     * @param string $format
+     * @param string $documentId
+     * @param int $templateId
+     * @return array
+     * @throws \RestClientException
+     */
+    public function getDocumentVersionDownload(string $code, string $format, ?int $templateId = NULL, ?int $advancedStyleId = NULL): array
+    {
+        return $this->documentVersionResource->getDocumentVersionDownload($code, $format, $templateId, $advancedStyleId);
     }
 
     /**
@@ -221,55 +271,6 @@ class Wrapper
     public function deleteShareUserGroup(string $code, string $idEmail): \stdClass
     {
         return $this->shareResource->deleteShareUserGroup($code, $idEmail);
-    }
-
-    /**
-     * Returns smart document elements data
-     * @param string $code
-     * @return array
-     * @throws \RestClientException
-     */
-    public function getSmartDocumentData(string $code): array
-    {
-        return $this->smartDocumentResource->getSmartDocumentData($code);
-    }
-
-    /**
-     * Creates smart document version and post elements data into smart document
-     * @param int $agreementId
-     * @param mixed $data
-     * @return \stdClass
-     * @throws \RestClientException
-     */
-    public function postSmartDocumentData(int $templateSuiteId, $data = NULL): \stdClass
-    {
-        return $this->smartDocumentResource->postSmartDocumentData($templateSuiteId, $data);
-    }
-
-    /**
-     * Puts document elements data into smart document
-     * @param string $code
-     * @param mixed $data
-     * @return \stdClass
-     * @throws \RestClientException
-     */
-    public function putSmartDocumentData(string $code, $data = NULL): \stdClass
-    {
-        return $this->smartDocumentResource->putSmartDocumentData($code, $data);
-    }
-
-    /**
-     * Downloads smart document in base64 encoded file
-     * @param string $code
-     * @param string $format
-     * @param string $documentId
-     * @param int $templateId
-     * @return array
-     * @throws \RestClientException
-     */
-    public function getSmartDocumentDownload(string $code, string $format, ?int $templateId = NULL, ?int $advancedStyleId = NULL): array
-    {
-        return $this->smartDocumentResource->getSmartDocumentDownload($code, $format, $templateId, $advancedStyleId);
     }
 
     /**
