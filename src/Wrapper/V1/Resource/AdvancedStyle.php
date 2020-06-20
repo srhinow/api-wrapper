@@ -1,7 +1,10 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource\V1;
+namespace Legito\Api\Wrapper\V1\Resource;
 
+
+use Legito\Api\Wrapper\V1\Resource\AbstractResource;
+use Legito\Api\Wrapper\V1\Client;
 
 /**
  * Class AgreementTemplate
@@ -12,7 +15,7 @@ namespace Legito\Api\Wrapper\Resource\V1;
 class AdvancedStyle extends AbstractResource
 {
     protected const RESOURCE = '/advanced-style';
-
+    
     /**
      * Returns advanced style list
      * @return array

@@ -2,18 +2,18 @@
 
 namespace Legito\Api\Wrapper\V1;
 
-use Legito\Api\Wrapper\Resource\V1\AdvancedStyle;
-use Legito\Api\Wrapper\Resource\V1\Country;
-use Legito\Api\Wrapper\Resource\V1\Currency;
-use Legito\Api\Wrapper\Resource\V1\DocumentRecord;
-use Legito\Api\Wrapper\Resource\V1\DocumentRecordGroup;
-use Legito\Api\Wrapper\Resource\V1\Info;
-use Legito\Api\Wrapper\Resource\V1\Share;
-use Legito\Api\Wrapper\Resource\V1\SmartDocument;
-use Legito\Api\Wrapper\Resource\V1\TemplateSuite;
-use Legito\Api\Wrapper\Resource\V1\Timezone;
-use Legito\Api\Wrapper\Resource\V1\User;
-use Legito\Api\Wrapper\Resource\V1\UserGroup;
+use Legito\Api\Wrapper\V1\Resource\Country;
+use Legito\Api\Wrapper\V1\Resource\Currency;
+use Legito\Api\Wrapper\V1\Resource\DocumentRecord;
+use Legito\Api\Wrapper\V1\Resource\DocumentRecordGroup;
+use Legito\Api\Wrapper\V1\Resource\Info;
+use Legito\Api\Wrapper\V1\Resource\AdvancedStyle;
+use Legito\Api\Wrapper\V1\Resource\Share;
+use Legito\Api\Wrapper\V1\Resource\SmartDocument;
+use Legito\Api\Wrapper\V1\Resource\TemplateSuite;
+use Legito\Api\Wrapper\V1\Resource\Timezone;
+use Legito\Api\Wrapper\V1\Resource\User;
+use Legito\Api\Wrapper\V1\Resource\UserGroup;
 
 /**
  * Class Legito
@@ -113,10 +113,10 @@ class Wrapper
      * @param int|null $offset
      * @param int|null $templateSuiteId
      * @param bool|null $deleted
-     * @return array
+//     * @return array
      * @throws \RestClientException
      */
-    public function getDocumentRecord(?int $limit = NULL, ?int $offset = NULL, ?int $templateSuiteId = NULL, ?bool $deleted = NULL): array
+    public function getDocumentRecord(?int $limit = NULL, ?int $offset = NULL, ?int $templateSuiteId = NULL, ?bool $deleted = NULL)
     {
         return $this->documentRecordResource->getDocumentRecord($limit, $offset, $templateSuiteId, $deleted);
     }
