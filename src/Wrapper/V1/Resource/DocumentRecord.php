@@ -19,10 +19,10 @@ class DocumentRecord extends AbstractResource
      * @param int|null $offset
      * @param int|null $templateSuiteId
      * @param bool|null $deleted
-//     * @return array
+     * @return array
      * @throws \RestClientException
      */
-    public function getDocumentRecord(?int $limit = NULL, ?int $offset = NULL, ?int $templateSuiteId = NULL, ?bool $deleted = NULL)
+    public function getDocumentRecord(?int $limit = NULL, ?int $offset = NULL, ?int $templateSuiteId = NULL, ?bool $deleted = NULL): array
     {
         $result = $this->client->get(
             self::RESOURCE,
