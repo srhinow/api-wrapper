@@ -1,6 +1,5 @@
 {
 	"name": "srhinow/api-wrapper",
-	"version": "2.0.0",
 	"description": "Legito REST API wrapper",
 	"keywords": ["legito"],
 	"type": "project",
