@@ -1,6 +1,6 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource\V1;
+namespace Legito\Api\Wrapper\V1\Resource;
 
 use Legito\Api\Wrapper\Exception\ApiResponseException;
 use Legito\Api\Wrapper\Exception\NotFoundException;

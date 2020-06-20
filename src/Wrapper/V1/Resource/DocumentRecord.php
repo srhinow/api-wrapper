@@ -1,6 +1,6 @@
 <?php
 
-namespace Legito\Api\Wrapper\Resource\V1;
+namespace Legito\Api\Wrapper\V1\Resource;
 
 
 /**
@@ -19,10 +19,10 @@ class DocumentRecord extends AbstractResource
      * @param int|null $offset
      * @param int|null $templateSuiteId
      * @param bool|null $deleted
-     * @return array
+//     * @return array
      * @throws \RestClientException
      */
-    public function getDocumentRecord(?int $limit = NULL, ?int $offset = NULL, ?int $templateSuiteId = NULL, ?bool $deleted = NULL): array
+    public function getDocumentRecord(?int $limit = NULL, ?int $offset = NULL, ?int $templateSuiteId = NULL, ?bool $deleted = NULL)
     {
         $result = $this->client->get(
             self::RESOURCE,
