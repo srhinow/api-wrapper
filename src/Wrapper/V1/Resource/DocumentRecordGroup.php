@@ -4,21 +4,21 @@ namespace Legito\Api\Wrapper\V1\Resource;
 
 
 /**
- * Class Currency
+ * Class DocumentRecordGroup
  * @package Legito\Api\Wrapper\Resource\V1
  * @author Marek Skopal, Legito s.r.o.
  * @license MIT
  */
-class Currency extends AbstractResource
+class DocumentRecordGroup extends AbstractResource
 {
-    protected const RESOURCE = '/currency';
+    protected const RESOURCE = '/document-record-group';
 
     /**
-     * Returns currency list
+     * Returns document record group list
      * @return array
      * @throws \RestClientException
      */
-    public function getCurrency(): array
+    public function getDocumentRecordGroup(): array
     {
         $result = $this->client->get(self::RESOURCE);
 
